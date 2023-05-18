@@ -10,6 +10,7 @@ import com.motivewave.platform.sdk.common.desc.PathDescriptor;
 import com.motivewave.platform.sdk.common.desc.ValueDescriptor;
 import com.motivewave.platform.sdk.study.Study;
 import com.motivewave.platform.sdk.study.StudyHeader;
+import redis.clients.jedis.JedisPooled;
 
 /** This simple example displays a exponential moving average. */
 @StudyHeader(
@@ -32,6 +33,8 @@ public class MyMovingAverage extends Study
   @Override
   public void initialize(Defaults defaults)
   {
+    JedisPooled jedis = new JedisPooled("localhost", 6379);
+
     // Describe the settings that may be configured by the user.
     // Settings may be organized using a combination of tabs and groups.  
     var sd = createSD();
